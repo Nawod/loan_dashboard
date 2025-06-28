@@ -7,6 +7,12 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import {
+	Accordion,
+	AccordionItem,
+	AccordionTrigger,
+	AccordionContent,
+} from "@/components/ui/accordion";
 import { useDashboardStore } from "@/lib/store";
 import { BrokerInfoCard } from "./BrokerInfoCard";
 import { OnboardingWorkflowCard } from "./OnboardingWorkflowCard";
@@ -46,15 +52,44 @@ export function BrokerOverview() {
 	}
 
 	return (
-		<div className="space-y-6">
-			{/* Broker Info Card */}
-			<BrokerInfoCard brokerInfo={brokerInfo} />
+		<div>
+			{/* Mobile Accordion View */}
+			<div className="md:hidden">
+				<Accordion
+					type="single"
+					collapsible
+					className="w-full"
+				>
+					<AccordionItem value="broker-info">
+						<AccordionTrigger className="text-left">
+							Broker Information
+						</AccordionTrigger>
+						<AccordionContent>
+							<BrokerInfoCard brokerInfo={brokerInfo} />
+						</AccordionContent>
+					</AccordionItem>
+					<AccordionItem value="onboarding-workflow">
+						<AccordionTrigger className="text-left">
+							Onboarding Workflow
+						</AccordionTrigger>
+						<AccordionContent>
+							<OnboardingWorkflowCard steps={onboardingWorkflow} />
+						</AccordionContent>
+					</AccordionItem>
+				</Accordion>
+			</div>
 
-			{/* Onboarding Workflow Card */}
-			<OnboardingWorkflowCard steps={onboardingWorkflow} />
+			{/* Desktop View */}
+			<div className="hidden md:block space-y-6">
+				{/* Broker Info Card */}
+				<BrokerInfoCard brokerInfo={brokerInfo} />
+
+				{/* Onboarding Workflow Card */}
+				<OnboardingWorkflowCard steps={onboardingWorkflow} />
+			</div>
 
 			{/* AI Assistant Toggle */}
-			<Card>
+			<Card className="mt-6">
 				<CardHeader>
 					<CardTitle className="text-lg">AI Assistant</CardTitle>
 				</CardHeader>
