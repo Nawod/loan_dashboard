@@ -8,11 +8,6 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-	requestDocuments,
-	sendToValuer,
-	approveLoan,
-} from "@/lib/constants/mock-data";
 import { useDashboardStore } from "@/lib/store";
 import { formatCurrency, getStatusVariant } from "@/lib/constants/shared";
 import { AiAccordion } from "./AiAccordion";
@@ -38,30 +33,15 @@ export function BorrowerDetail() {
 	}
 
 	const handleRequestDocuments = async () => {
-		try {
-			await requestDocuments(activeBorrowerDetail.id);
-			console.log("Documents requested successfully");
-		} catch (error) {
-			console.error("Failed to request documents:", error);
-		}
+		console.log("Documents requested successfully");
 	};
 
 	const handleSendToValuer = async () => {
-		try {
-			await sendToValuer(activeBorrowerDetail.id);
-			console.log("Sent to valuer successfully");
-		} catch (error) {
-			console.error("Failed to send to valuer:", error);
-		}
+		console.log("Sent to valuer successfully");
 	};
 
 	const handleApprove = async () => {
-		try {
-			await approveLoan(activeBorrowerDetail.id);
-			console.log("Loan approved successfully");
-		} catch (error) {
-			console.error("Failed to approve loan:", error);
-		}
+		console.log("Loan approved successfully");
 	};
 
 	return (
@@ -106,12 +86,14 @@ export function BorrowerDetail() {
 						<Button
 							variant="outline"
 							onClick={handleRequestDocuments}
+							data-testid="request-documents-button"
 						>
 							Request Documents
 						</Button>
 						<Button
 							variant="outline"
 							onClick={handleSendToValuer}
+							data-testid="send-to-valuer-button"
 						>
 							Send to Valuer
 						</Button>
@@ -120,6 +102,7 @@ export function BorrowerDetail() {
 						variant="default"
 						onClick={handleApprove}
 						className="w-full mt-2 bg-green-600 hover:bg-green-700"
+						data-testid="approve-button"
 					>
 						Approve
 					</Button>

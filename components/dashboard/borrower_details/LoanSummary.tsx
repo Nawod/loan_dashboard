@@ -70,6 +70,7 @@ export function LoanSummary({
 						className="w-full"
 						onClick={handleEscalate}
 						disabled={activeBorrowerDetail.status === "Approved"}
+						data-testid="escalate-button"
 					>
 						Escalate to Credit Committee
 					</Button>

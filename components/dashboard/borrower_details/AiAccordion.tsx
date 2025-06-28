@@ -20,6 +20,7 @@ export function AiAccordion({ aiFlags }: { aiFlags: string[] }) {
 			type="single"
 			collapsible
 			className="w-full"
+			data-testid="ai-accordion"
 		>
 			<AccordionItem value="ai-explainability">
 				<AccordionTrigger

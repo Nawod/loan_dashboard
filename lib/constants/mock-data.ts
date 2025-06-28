@@ -140,22 +140,6 @@ export const getOnboardingWorkflow = (): Promise<OnboardingWorkflow[]> => {
   return Promise.resolve(mockOnboardingWorkflow)
 }
 
-export const requestDocuments = (id: string): Promise<{ success: boolean; message: string }> => {
-  console.log(`Requesting documents for borrower ${id}`)
-  return Promise.resolve({ success: true, message: "Documents requested." })
-}
-
-export const sendToValuer = (id: string): Promise<{ success: boolean; message: string }> => {
-  console.log(`Sending borrower ${id} to valuer`)
-  return Promise.resolve({ success: true, message: "Valuer notified." })
-}
-
-export const approveLoan = (id: string): Promise<{ success: boolean; message: string }> => {
-  console.log(`Approving loan for borrower ${id}`)
-  return Promise.resolve({ success: true, message: "Loan approved." })
-}
-
 export const escalateToCreditCommittee = (id: string): Promise<{ success: boolean; message: string }> => {
-  console.log(`Escalating borrower ${id} to credit committee`)
   return Promise.resolve({ success: true, message: "Escalated to Credit Committee." })
 } 

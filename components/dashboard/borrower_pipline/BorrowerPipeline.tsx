@@ -7,16 +7,16 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { Borrower, PipelineData, TabValue } from "@/types";
-import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { Label } from "@radix-ui/react-label";
 import { useDashboardStore } from "@/lib/store";
 import { Status } from "@/lib/constants/shared";
 import { BorrowerCard } from "./BorrowerCard";
 
 export function BorrowerPipeline() {
 	const [activeTab, setActiveTab] = React.useState<TabValue>("new");
-	const { pipelineData, activeBorrowerId, setActiveBorrower } =
+	const { pipelineData, activeBorrowerId, setActiveBorrower, loadingPipeline } =
 		useDashboardStore();
 
 	const renderBorrowerList = (borrowers: Borrower[]) => {
@@ -41,6 +41,25 @@ export function BorrowerPipeline() {
 			</div>
 		);
 	};
+
+	if (loadingPipeline) {
+		return (
+			<Card
+				className="h-full"
+				data-testid="borrower-pipeline"
+			>
+				<CardHeader>
+					<CardTitle className="text-lg">Borrower Pipeline</CardTitle>
+				</CardHeader>
+				<CardContent className="flex items-center justify-center h-64">
+					<div className="text-center text-muted-foreground">
+						<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+						<p>Loading pipeline data...</p>
+					</div>
+				</CardContent>
+			</Card>
+		);
+	}
 
 	return (
 		<Card
@@ -84,31 +103,43 @@ export function BorrowerPipeline() {
 						F-SANATISED ACTIVE
 					</div>
 					<RadioGroup
-						defaultValue="option1"
+						defaultValue="all"
 						className="space-y-2"
 					>
 						<div className="flex items-center space-x-2">
 							<RadioGroupItem
-								value="option1"
-								id="option1"
+								value="all"
+								id="all"
 							/>
 							<Label
-								htmlFor="option1"
+								htmlFor="all"
 								className="text-sm"
 							>
-								Option 1
+								All Applications
 							</Label>
 						</div>
 						<div className="flex items-center space-x-2">
 							<RadioGroupItem
-								value="option2"
-								id="option2"
+								value="sanitised"
+								id="sanitised"
 							/>
 							<Label
-								htmlFor="option2"
+								htmlFor="sanitised"
 								className="text-sm"
 							>
-								Option 2
+								Sanitised Only
+							</Label>
+						</div>
+						<div className="flex items-center space-x-2">
+							<RadioGroupItem
+								value="active"
+								id="active"
+							/>
+							<Label
+								htmlFor="active"
+								className="text-sm"
+							>
+								Active Processing
 							</Label>
 						</div>
 					</RadioGroup>
