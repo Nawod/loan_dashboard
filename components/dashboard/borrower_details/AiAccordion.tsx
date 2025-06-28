@@ -24,16 +24,11 @@ export function AiAccordion({ aiFlags }: { aiFlags: string[] }) {
 			<AccordionItem value="ai-explainability">
 				<AccordionTrigger
 					data-testid="ai-explainability"
-					className="text-left"
+					className="text-left flex items-center justify-start gap-2"
 				>
-					AI Explainability
+					<span className="flex-1">AI Explainability</span>
 					{aiFlags.length > 0 && (
-						<Badge
-							variant="destructive"
-							className="ml-2"
-						>
-							{aiFlags.length} Issues
-						</Badge>
+						<Badge variant="destructive">{aiFlags.length} Issues</Badge>
 					)}
 				</AccordionTrigger>
 				<AccordionContent>

@@ -6,7 +6,7 @@
  */
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Switch } from "@/components/ui/switch";
+import { Switch } from "@/components/ui/switch";
 import { useDashboardStore } from "@/lib/store";
 import { BrokerInfoCard } from "./BrokerInfoCard";
 import { OnboardingWorkflowCard } from "./OnboardingWorkflowCard";
@@ -17,9 +17,9 @@ export function BrokerOverview() {
 		onboardingWorkflow,
 		loadingBrokerInfo,
 		loadingOnboardingWorkflow,
+		aiAssistantEnabled,
+		setAiAssistantEnabled,
 	} = useDashboardStore();
-
-	const [aiAssistantEnabled, setAiAssistantEnabled] = useState(false);
 
 	if (loadingBrokerInfo || loadingOnboardingWorkflow) {
 		return (
@@ -60,11 +60,18 @@ export function BrokerOverview() {
 				</CardHeader>
 				<CardContent>
 					<div className="flex items-center justify-between">
-						<span className="text-sm">E Ardsassist</span>
-						{/* <Switch
+						<div className="space-y-1">
+							<span className="text-sm font-medium">E Ardsassist</span>
+							<p className="text-xs text-muted-foreground">
+								Enable AI-powered assistance for loan processing
+							</p>
+						</div>
+						<Switch
 							checked={aiAssistantEnabled}
 							onCheckedChange={setAiAssistantEnabled}
-						/> */}
+							className="data-[state=checked]:bg-green-600"
+							aria-label="Toggle AI Assistant"
+						/>
 					</div>
 				</CardContent>
 			</Card>

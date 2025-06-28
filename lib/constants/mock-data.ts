@@ -78,7 +78,7 @@ export const mockBorrowerDetails: Record<string, BorrowerDetail> = {
     existing_loan: 0,
     credit_score: 780,
     source_of_funds: "Declared",
-    risk_signal: "No risk signals detected",
+    risk_signal: undefined,
     ai_flags: []
   }
 }

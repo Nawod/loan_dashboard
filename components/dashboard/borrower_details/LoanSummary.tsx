@@ -56,24 +56,25 @@ export function LoanSummary({
 			</div>
 			{/* Risk Signal */}
 			{activeBorrowerDetail.risk_signal && (
-				<div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-					<div className="flex items-center gap-2">
-						<AlertTriangle className="h-4 w-4 text-yellow-600" />
-						<span className="text-sm text-yellow-800">
-							{activeBorrowerDetail.risk_signal}
-						</span>
+				<>
+					<div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+						<div className="flex items-center gap-2">
+							<AlertTriangle className="h-4 w-4 text-yellow-600" />
+							<span className="text-sm text-yellow-800">
+								{activeBorrowerDetail.risk_signal}
+							</span>
+						</div>
 					</div>
-				</div>
-			)}
 
-			{/* Escalate Button */}
-			<Button
-				className="w-full"
-				onClick={handleEscalate}
-				disabled={activeBorrowerDetail.status === "Approved"}
-			>
-				Escalate to Credit Committee
-			</Button>
+					<Button
+						className="w-full"
+						onClick={handleEscalate}
+						disabled={activeBorrowerDetail.status === "Approved"}
+					>
+						Escalate to Credit Committee
+					</Button>
+				</>
+			)}
 		</div>
 	);
 }

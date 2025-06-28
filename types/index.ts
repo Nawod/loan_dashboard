@@ -18,7 +18,7 @@ export interface BorrowerDetail {
   existing_loan: number
   credit_score: number
   source_of_funds: string
-  risk_signal: string
+  risk_signal: string | undefined
   ai_flags: string[]
 }
 

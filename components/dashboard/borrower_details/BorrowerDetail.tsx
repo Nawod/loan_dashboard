@@ -20,7 +20,7 @@ import { LoanSummary } from "./LoanSummary";
 import { ContactButtons } from "@/components/shared/ContactButtons";
 
 export function BorrowerDetail() {
-	const { activeBorrowerDetail } = useDashboardStore();
+	const { activeBorrowerDetail, aiAssistantEnabled } = useDashboardStore();
 
 	if (!activeBorrowerDetail) {
 		return (
@@ -96,7 +96,9 @@ export function BorrowerDetail() {
 
 			<CardContent className="space-y-6">
 				{/* AI Explainability Section */}
-				<AiAccordion aiFlags={activeBorrowerDetail.ai_flags} />
+				{aiAssistantEnabled && (
+					<AiAccordion aiFlags={activeBorrowerDetail.ai_flags} />
+				)}
 
 				{/* Action Buttons */}
 				<div>

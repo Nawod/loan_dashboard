@@ -29,6 +29,9 @@ interface DashboardState {
   // Onboarding workflow
   onboardingWorkflow: OnboardingWorkflow[] | null
   loadingOnboardingWorkflow: boolean
+
+  // AI assistant
+  aiAssistantEnabled: boolean
   
   // Actions
   setActiveBorrower: (borrower: Borrower) => void
@@ -38,6 +41,8 @@ interface DashboardState {
   loadBrokerInfo: () => Promise<void>
   loadOnboardingWorkflow: () => Promise<void>
   initializeDashboard: () => Promise<void>
+  setAiAssistantEnabled: (enabled: boolean) => void
+
 }
 
 export const useDashboardStore = create<DashboardState>((set, get) => ({
@@ -51,6 +56,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
   loadingBrokerInfo: false,
   onboardingWorkflow: null,
   loadingOnboardingWorkflow: false,
+  aiAssistantEnabled: true,
 
   //set active borrower
   setActiveBorrower: (borrower: Borrower) => {
@@ -125,5 +131,10 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       get().loadBrokerInfo(),
       get().loadOnboardingWorkflow()
     ])
+  },
+
+  //set ai assistant enabled
+  setAiAssistantEnabled: (enabled: boolean) => {
+    set({ aiAssistantEnabled: enabled })
   }
 })) 
